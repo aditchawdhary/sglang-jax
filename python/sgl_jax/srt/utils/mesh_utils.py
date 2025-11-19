@@ -3,6 +3,7 @@ from collections.abc import Sequence
 import jax
 import numpy as np
 from jax._src import mesh_utils
+import logging
 
 
 def create_device_mesh(
@@ -16,6 +17,11 @@ def create_device_mesh(
     """Create a device mesh"""
     if devices is None:
         devices = jax.devices()
+        
+    logging.info("process count: ", jax.process_count())
+    logging.info("local device count: ", jax.local_device_count())
+    logging.info("total device count: ", len(devices))
+    logging.info("devices: ", devices)
 
     ici_parallelism = fill_unspecified_parallelism(ici_parallelism, len(devices))
     if num_slices > 1:
