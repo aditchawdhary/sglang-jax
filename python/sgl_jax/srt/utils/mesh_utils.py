@@ -18,10 +18,10 @@ def create_device_mesh(
     if devices is None:
         devices = jax.devices()
         
-    logging.info("process count: ", jax.process_count())
-    logging.info("local device count: ", jax.local_device_count())
-    logging.info("total device count: ", len(devices))
-    logging.info("devices: ", devices)
+    logging.info("process count: %d", jax.process_count())
+    logging.info("local device count: %d", jax.local_device_count())
+    logging.info("total device count: %d", len(devices))
+    logging.info("devices: %s", devices)
 
     ici_parallelism = fill_unspecified_parallelism(ici_parallelism, len(devices))
     if num_slices > 1:
